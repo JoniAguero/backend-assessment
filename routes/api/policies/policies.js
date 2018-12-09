@@ -52,8 +52,8 @@ module.exports = (app) => {
       .then(data => {
         const clients = data[0].clients // Posicion de clientes
         const policies = data[1].policies // Posicion de policies
-        const policy = policies.find(policy => policy.clientId === id)
-        const response = clients.filter(client => client.id === policy.clientId)
+        const policy = policies.find(policy => policy.id === id)
+        const response = clients.find(client => client.id === policy.clientId)
         res.send(response)
       })
   })
