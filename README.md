@@ -1,29 +1,25 @@
-# Curso de esenciales de Node.js
+[Back-Assessment]
+======================
 
-Este repositorio ha sido confeccionado para proveer de material apropiado al participante del curso durante el desarrollo del mismo.
+  - [Information](#information)
+  - [Installation](#installation)
 
-## Empezando
+## Information ##
 
-Para hacer uso del mismo, proceda a clonar el repositorio en su equipo local mediante el apropiado comando:
+#### URL Views
+[ http://localhost:3000/index.html ]
 
-```
-git clone https://github.com/platzi/nodejsesenciales.git
-```
+#### URL API
+[ http://localhost:3000/api/* ]
 
-## Uso
 
-Durante lecciones específicas del curso, se harán uso de talleres definidos dentro de este repositorio. Para su facilidad, simplemente necesitara cambiar de rama al inicio de cada lección mediante los comandos:
+  - Node application (10.13.0) where external api is consumed and express is used like middleware. 
 
-```
-git checkout [NOMBRE_RAMA] && npm install
-```
+## Installation ##
 
-Con esto hecho, su lección estará lista para ser desarrollada junto al programa.
+#### Steps
 
-## Autor
-
-* **Platzi**
-
-## Licencia
-
-* **Licencia MIT**
+    1. Clone/Download repositoy
+    2. cd project
+    3. npm install
+    4. http://localhost:3000/index.html
