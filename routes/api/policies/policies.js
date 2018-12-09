@@ -9,11 +9,11 @@ const urls = [
 module.exports = (app) => {
     const options = {
         uri: urls[1],
-        json: true // Automatically parses the JSON string in the response
+        json: true
     };
     app.get(`${API_PATH}/policies`, (req, res) => {
         request(options, function (error, response, body) {
-            if (error) console.log('error:', error); // Print the error if one occurred and handle it
+            if (error) console.log('error:', error); 
             console.log('statusCode:', response && response.statusCode);
             res.send(body)
         });
@@ -21,7 +21,6 @@ module.exports = (app) => {
     app.get(`${API_PATH}/policies/name/:name`, (req, res) => {
         const name = req.params.name
         let requests = urls.map(url => fetch(url))
-        // Promise.all waits until all jobs are resolved
         Promise.all(requests)
             .then(responses => {
                 return responses
@@ -42,7 +41,6 @@ module.exports = (app) => {
     app.get(`${API_PATH}/policies/id/:id`, (req, res) => {
         const id = req.params.id
         let requests = urls.map(url => fetch(url))
-        // Promise.all waits until all jobs are resolved
         Promise.all(requests)
             .then(responses => {
                 return responses
