@@ -13,6 +13,16 @@ api.getAllClients().then(data => {
     });
 })
 
+api.getAllPolicies().then(data => {
+    const policies = data.policies;
+    policies.forEach(element => {
+        const option = document.createElement('option');
+        option.value = element.id;
+        option.appendChild(document.createTextNode(element.id));
+        UI.select_policies.appendChild(option);
+    });
+})
+
 UI.get_userbyid.addEventListener('click', (e) => {
     e.preventDefault();
     const clientSelected = UI.select_clients.value;
@@ -35,8 +45,8 @@ UI.get_policiesbyusername.addEventListener('click', (e) => {
 
 });
 UI.get_userbypolicyid.addEventListener('click', (e) => {
-
     e.preventDefault();
-    api.getUserByPolicyID().then(data => console.log(data));
+    const policySelected = UI.select_policies.value;
+    api.getUserByPolicyID(policySelected).then(data => console.log(data));
 
 });

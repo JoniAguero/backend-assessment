@@ -3,14 +3,27 @@ const express = require('express')
 const logger = require('morgan')
 const chalk = require('chalk')
 const bodyParser = require('body-parser')
+const cors = require('cors');
+const jwt = require('./_helpers/jwt');
+const errorHandler = require('./_helpers/error-handler');
+const fatalErrorHandler = require('./_helpers/fatalerror-handler');
+
+const app = express();
 
 const port = process.env.PORT || 3000
-const app = express()
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
+  next();
+});
+
+app.use(cors());
+app.use(jwt());
 app.use(express.static('public'))
 
 app.use((err, req, res, next) => {
@@ -25,17 +38,14 @@ app.use((err, req, res, next) => {
   })
 })
 
-function handleFatalError (err) {
-  console.error(`${chalk.red('[fatal error]')} ${err.message}`)
-  console.error(err.stack)
-  process.exit(1)
-}
-process.on('uncaughtException', handleFatalError)
-process.on('unhandledRejection', handleFatalError)
-
-require('./routes/views')(app)
-require('./routes/api')(app)
+require('./routes/api/clients/clients')(app)
+require('./routes/api/policies/policies')(app)
 require('./routes/special')(app)
+
+app.use(errorHandler);
+app.use(fatalErrorHandler);
+process.on('uncaughtException', fatalErrorHandler)
+process.on('unhandledRejection', fatalErrorHandler)
 
 console.log('Iniciando Express.js')
 app.listen(port, () => {
