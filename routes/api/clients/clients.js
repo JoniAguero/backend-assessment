@@ -16,9 +16,6 @@ module.exports = (app) => {
     })
   })
   app.get(`${API_PATH}/clients/id/:id`, verifyToken, (req, res) => {
-    console.log("Entro a clients");
-    
-    console.log(req.params);
     const id = req.params.id
     request(options, function (error, response, body) {
       if (error) console.log('error:', error)

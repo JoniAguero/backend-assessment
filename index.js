@@ -39,7 +39,6 @@ app.use(jwt({
       const req2 = req1.replace(/['"]+/g, '')
       return req2;
     } else if (req.query && req.query.token) {
-      console.log(req.headers.authorization.split(' ')[1]);
       return req.query.token;
     }
     return null;
