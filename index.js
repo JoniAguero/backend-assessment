@@ -4,9 +4,11 @@ const logger = require('morgan')
 const chalk = require('chalk')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const jwt = require('./_helpers/jwt')
 const errorHandler = require('./_helpers/error-handler')
 const fatalErrorHandler = require('./_helpers/fatalerror-handler')
+const config = require('./config.json')
+
+const jwt = require('express-jwt')
 
 const app = express()
 
@@ -27,7 +29,22 @@ app.use((req, res, next) => {
 
 app.use(express.static('public'));
 app.use(cors())
-app.use(jwt())
+
+app.use(jwt({
+  secret: config.secret,
+  credentialsRequired: false,
+  getToken: function fromHeaderOrQuerystring(req) {
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+      const req1 = req.headers.authorization.split(' ')[1];
+      const req2 = req1.replace(/['"]+/g, '')
+      return req2;
+    } else if (req.query && req.query.token) {
+      console.log(req.headers.authorization.split(' ')[1]);
+      return req.query.token;
+    }
+    return null;
+  }
+}));
 
 require('./routes/auth/auth.controller')(app)
 require('./routes/api/clients/clients')(app)

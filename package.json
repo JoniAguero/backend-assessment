@@ -18,7 +18,8 @@
   "scripts": {
     "lint": "standard --fix",
     "test": "mocha ./tests --recursive",
-    "start": "nodemon index.js"
+    "start-dev": "nodemon index.js",
+    "start": "NODE_ENV=production node index.js"
   },
   "author": "Platzi",
   "license": "MIT",
@@ -32,6 +33,7 @@
     "glob": "^7.1.3",
     "isomorphic-fetch": "^2.2.1",
     "jsonwebtoken": "^8.4.0",
+    "jwt-simple": "^0.5.5",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.4",
     "request": "^2.88.0"

@@ -1,5 +1,7 @@
 var fetch = require('isomorphic-fetch')
 var request = require('request')
+const verifyToken = require('../../../_helpers/verifytoken')
+const verifyRole = require('../../../_helpers/verifyrole')
 
 const API_PATH = '/api'
 const urls = [
@@ -18,7 +20,7 @@ module.exports = (app) => {
       res.send(body)
     })
   })
-  app.get(`${API_PATH}/policies/name/:name`, (req, res) => {
+  app.get(`${API_PATH}/policies/name/:name`, [verifyToken, verifyRole], (req, res) => {
     const name = req.params.name
     let requests = urls.map(url => fetch(url))
     Promise.all(requests)
@@ -38,7 +40,7 @@ module.exports = (app) => {
       })
   }
   )
-  app.get(`${API_PATH}/policies/id/:id`, (req, res) => {
+  app.get(`${API_PATH}/policies/id/:id`, [verifyToken, verifyRole], (req, res) => {
     const id = req.params.id
     let requests = urls.map(url => fetch(url))
     Promise.all(requests)

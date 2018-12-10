@@ -31,22 +31,94 @@ export class API {
   }
 
   async getUserByID (id) {
-    const url = await fetch(`${this.URL_API}/clients/id/${id}`)
-    return await url.json()
+    const token = window.localStorage.getItem('token')
+    const role = window.localStorage.getItem('role')
+    const resp = await fetch(`${this.URL_API}/clients/id/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${JSON.stringify(token)}`,
+          'Credentials': `${JSON.stringify(role)}`
+        }
+      }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => {
+        if(response.undefined) {
+          return M.toast({
+            html: `Error authentication`,
+            classes: 'rounded'
+          })
+        }
+        return response
+      });
+    return resp;
   }
 
   async getUserByName (name) {
-    const url = await fetch(`${this.URL_API}/clients/name/${name}`)
-    return await url.json()
+    const token = window.localStorage.getItem('token')
+    const role = window.localStorage.getItem('role')
+    const resp = await fetch(`${this.URL_API}/clients/name/${name}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${JSON.stringify(token)}`,
+          'Credentials': `${JSON.stringify(role)}`
+        }
+      }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => {
+        if (response.undefined) {
+          return M.toast({
+            html: `Error authentication`,
+            classes: 'rounded'
+          })
+        }
+        return response
+      });
+    return resp;
   }
 
   async getPoliciesByUserName (name) {
-    const url = await fetch(`${this.URL_API}/policies/name/${name}`)
-    return await url.json()
+    const token = window.localStorage.getItem('token')
+    const role = window.localStorage.getItem('role')
+    const resp = await fetch(`${this.URL_API}/policies/name/${name}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${JSON.stringify(token)}`,
+          'Credentials': `${JSON.stringify(role)}`
+        }
+      }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => {
+        if (response.undefined) {
+          return M.toast({
+            html: `Error authentication`,
+            classes: 'rounded'
+          })
+        }
+        return response
+      });
+    return resp;
   }
 
   async getUserByPolicyID (id) {
-    const url = await fetch(`${this.URL_API}/policies/id/${id}`)
-    return await url.json()
+    const token = window.localStorage.getItem('token')
+    const role = window.localStorage.getItem('role')
+    const resp = await fetch(`${this.URL_API}/policies/id/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${JSON.stringify(token)}`,
+          'Credentials': `${JSON.stringify(role)}`
+        }
+      }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => {
+        if (response.undefined) {
+          return M.toast({
+            html: `Error authentication`,
+            classes: 'rounded'
+          })
+        }
+        return response
+      });
+    return resp;
   }
 }
