@@ -1,12 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eventos</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/materialize.min.css">
     <title>Back-End Assessment</title>
 </head>
+
 <body>
-    hola
+    <div class="container-principal row">
+        <header>
+            <div class="navbar-fixed">
+                <nav>
+                    <div class="nav-wrapper">
+                        <a href="#!" class="brand-logo" style="margin-left: 20px;">Back-End Assessment</a>
+
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div class="container-buttons">
+                        <div class="col s12 m4 l2">
+                            <a class="waves-effect waves-light btn-large tooltipped" data-position="top" data-tooltip="USER ROLE">USER</a>
+                        </div>
+                        <div class="col s12 m4 l8"></div>
+                        <div class="col s12 m4 l2">
+                            <a class="waves-effect waves-light btn-large tooltipped" data-position="top" data-tooltip="ADMIN ROLE">ADMIN</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="collection">
+                        <a href="#!" class="collection-item">Get All Users</a>
+                        <a href="#!" class="collection-item active">Get All Policies</a>
+                        <a href="#!" class="collection-item">Get User by ID</a>
+                        <a href="#!" class="collection-item">Get User by Name</a>
+                        <a href="#!" class="collection-item">Get the list of policies linked to a user name</a>
+                        <a href="#!" class="collection-item">Get the user linked to a policy number</a>
+                    </div>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col s12">
+                    <div class="results">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="page-footer teal footer">
+            <div class="container">
+                © 2018 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="https://www.linkedin.com/in/jonathan-aguero-256648137/">Jonathan
+                    Agüero</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="./js/materialize.min.js"></script>
+    <!-- <script src="js/app.js" type="module"></script> -->
+
+    <script>
+        (function () {
+            $(document).ready(function () {
+                $('.tooltipped').tooltip();
+            });
+        })(jQuery);
+    </script>
 </body>
+
 </html>
