@@ -8,7 +8,11 @@ function jwt () {
   return expressJwt({ secret }).unless({
     path: [
       // public routes that don't require authentication
-      '/authenticate'
+      '/',
+      '/authenticate',
+      '/api/clients',
+      '/api/policies',
+      '/favicon.ico'
     ]
   })
 }

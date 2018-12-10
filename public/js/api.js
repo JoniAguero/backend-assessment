@@ -1,6 +1,23 @@
 export class API {
   constructor () {
-    this.URL_API = 'http://localhost:3000/api'
+    this.URL_AUTH = 'http://localhost:3000',
+    this.URL_API = 'http://localhost:3000/api',
+    this.user = {
+      username: 'test',
+      password: 'test'
+    }
+  }
+  async authenticate(role) {
+    const resp = await fetch(`${this.URL_AUTH}/authenticate`, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify({...this.user, role}),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response =>{ return response});
+    return resp;
   }
 
   async getAllClients () {

@@ -1,3 +1,5 @@
+const chalk = require('chalk')
+
 module.exports = handleFatalError
 
 function handleFatalError (err) {

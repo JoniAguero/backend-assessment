@@ -13,18 +13,26 @@ const app = express()
 const port = process.env.PORT || 3000
 
 app.use(logger('dev'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization')
-  next()
-})
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
+  next();
+});
 
+
+app.use(express.static('public'));
 app.use(cors())
 app.use(jwt())
-app.use(express.static('public'))
+
+require('./routes/auth/auth.controller')(app)
+require('./routes/api/clients/clients')(app)
+require('./routes/api/policies/policies')(app)
+require('./routes/special')(app)
 
 app.use((err, req, res, next) => {
   debug(`Error: ${err.message}`)
@@ -37,10 +45,6 @@ app.use((err, req, res, next) => {
     error: err.message
   })
 })
-
-require('./routes/api/clients/clients')(app)
-require('./routes/api/policies/policies')(app)
-require('./routes/special')(app)
 
 app.use(errorHandler)
 app.use(fatalErrorHandler)

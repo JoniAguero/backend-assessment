@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">  
     <title>Eventos</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./css/index.css">
@@ -18,8 +19,7 @@
             <div class="navbar-fixed">
                 <nav>
                     <div class="nav-wrapper">
-                        <a href="#!" class="brand-logo" style="margin-left: 20px;">Back-End Assessment</a>
-
+                        <a href="#" class="brand-logo" style="margin-left: 20px;">Back-End Assessment</a>
                     </div>
                 </nav>
             </div>
@@ -29,11 +29,11 @@
                 <div class="col s12">
                     <div class="container-buttons">
                         <div class="col s12 m4 l2">
-                            <a class="waves-effect waves-light btn-large tooltipped" data-position="top" data-tooltip="USER ROLE">USER</a>
+                            <a class="waves-effect waves-light btn-large tooltipped" data-position="top" data-tooltip="USER ROLE" id="user_button">USER</a>
                         </div>
                         <div class="col s12 m4 l8"></div>
                         <div class="col s12 m4 l2">
-                            <a class="waves-effect waves-light btn-large tooltipped" data-position="top" data-tooltip="ADMIN ROLE">ADMIN</a>
+                            <a class="waves-effect waves-light btn-large tooltipped" data-position="top" data-tooltip="ADMIN ROLE" id="admin_button">ADMIN</a>
                         </div>
                     </div>
                 </div>
@@ -55,10 +55,10 @@
             <div class="row">
                 <div class="col s12">
                     <div class="collection">
-                        <a href="#!" id="get_userbyid" class="collection-item">Get User by ID</a>
-                        <a href="#!" id="get_userbyname" class="collection-item">Get User by Name</a>
-                        <a href="#!" id="get_policiesbyusername" class="collection-item">Get the list of policies linked to a user name</a>
-                        <a href="#!" id="get_userbypolicyid" class="collection-item">Get the user linked to a policy number</a>
+                        <a href="#" id="get_userbyid" class="collection-item">Get User by ID</a>
+                        <a href="#" id="get_userbyname" class="collection-item">Get User by Name</a>
+                        <a href="#" id="get_policiesbyusername" class="collection-item">Get the list of policies linked to a user name</a>
+                        <a href="#" id="get_userbypolicyid" class="collection-item">Get the user linked to a policy number</a>
                     </div>
                 </div>
             </div>
@@ -83,18 +83,19 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="./js/materialize.min.js"></script>
-    <script src="js/app.js" type="module"></script>
-
+    
     <script>
         (function () {
             $(document).ready(function () {
+                alert('Pick User/Admin rol for request')
                 $('.tooltipped').tooltip();
             });
             setTimeout(() => {
                 $('select').select();
-            }, 2000);
+            }, 3000);
         })(jQuery);
-    </script>
+        </script>
+    <script src="js/app.js" type="module"></script>
 </body>
 
 </html>

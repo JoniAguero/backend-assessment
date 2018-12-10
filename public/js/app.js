@@ -22,27 +22,82 @@ api.getAllPolicies().then(data => {
     UI.select_policies.appendChild(option)
   })
 })
-
 UI.get_userbyid.addEventListener('click', (e) => {
   e.preventDefault()
   const clientSelected = UI.select_clients.value
-  console.log(clientSelected)
-  api.getUserByID(clientSelected).then(data => console.log(data))
+  api.getUserByID(clientSelected)
+  .then(data => {
+    if(data.error) {
+      return M.toast({
+        html: `${data.error}`,
+        classes: 'rounded'
+      })
+    }
+    console.log(data);
+  })
 })
 UI.get_userbyname.addEventListener('click', (e) => {
   e.preventDefault()
   const index = UI.select_clients.selectedIndex
   const name = UI.select_clients[index].innerHTML
-  api.getUserByName(name).then(data => console.log(data))
+  api.getUserByName(name).then(data => {
+    if (data.error) {
+      return M.toast({
+        html: `${data.error}`,
+        classes: 'rounded'
+      })
+    }
+    console.log(data);
+  })
 })
 UI.get_policiesbyusername.addEventListener('click', (e) => {
   e.preventDefault()
   const index = UI.select_clients.selectedIndex
   const name = UI.select_clients[index].innerHTML
-  api.getPoliciesByUserName(name).then(data => console.log(data))
+  api.getPoliciesByUserName(name).then(data => {
+    if (data.error) {
+      return M.toast({
+        html: `${data.error}`,
+        classes: 'rounded'
+      })
+    }
+    console.log(data);
+  })
 })
 UI.get_userbypolicyid.addEventListener('click', (e) => {
   e.preventDefault()
   const policySelected = UI.select_policies.value
-  api.getUserByPolicyID(policySelected).then(data => console.log(data))
+  api.getUserByPolicyID(policySelected).then(data => {
+    if (data.error) {
+      return M.toast({
+        html: `${data.error}`,
+        classes: 'rounded'
+      })
+    }
+    console.log(data);
+  })
+})
+UI.user_button.addEventListener('click', (e) => {
+  e.preventDefault()
+  api.authenticate('user').then(data => {
+    window.localStorage.setItem('username', data.username)
+    window.localStorage.setItem('role', data.role)
+    window.localStorage.setItem('token', data.token)
+    return M.toast({
+      html: `Successful Authentication: ${data.role}`,
+      classes: 'rounded'
+    })
+  });
+})
+UI.admin_button.addEventListener('click', (e) => {
+  e.preventDefault()
+  api.authenticate('admin').then(data => {
+    window.localStorage.setItem('username', data.username)
+    window.localStorage.setItem('role', data.role)
+    window.localStorage.setItem('token', data.token)
+    return M.toast({
+      html: `Successful Authentication: ${data.role}`,
+      classes: 'rounded'
+    })
+  });
 })
