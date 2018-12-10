@@ -23,4 +23,4 @@
     2. cd project
     3. npm install
     4. http://localhost:3000/index.html
-    4. Open Browser Console, please :cow:
+    5. Open Browser Console, please :cow:
