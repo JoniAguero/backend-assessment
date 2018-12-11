@@ -1,11 +1,30 @@
+"use strict"
 const chaiHttp = require('chai-http')
 const chai = require('chai')
 
 const expect = chai.expect
-const config = require('../config')
+const config = require('../../config')
+
+const app = require('../../index')
 
 chai.use(chaiHttp)
 describe('GET /clients', function () {
+
+  it('athenticate', (done) => {
+    chai.request(app)
+        .post('/authenticate')
+        .set('authorization', 'xxx')
+        .send({ user: 'test', password: 'test' })
+        .end(function(err, res) {
+            console.log(res.status);
+            console.log(res.body);
+            console.log(res.type);
+            expect(res).to.have.status(200)
+            expect(res).to.have.type('application/json')
+            done();
+        });
+  });
+
   it('should get status 200', (done) => {
     chai.request(config.API_URL)
       .get('/clients')

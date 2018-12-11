@@ -2,7 +2,7 @@ const chaiHttp = require('chai-http')
 const chai = require('chai')
 
 const expect = chai.expect
-const config = require('../config')
+const config = require('../../config')
 
 chai.use(chaiHttp)
 describe('GET /policies', function () {

@@ -17,9 +17,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard --fix",
-    "test": "mocha ./tests --recursive",
-    "start-dev": "nodemon index.js",
-    "start": "NODE_ENV=production node index.js"
+    "test": "cross-env NODE_ENV=test mocha --timeout 5000 __tests__/server/**/*.test.js",
+    "start": "cross-env NODE_ENV=prod nodemon server/index.js",
+    "start-dev": "cross-env NODE_ENV=dev nodemon server/index.js"
   },
   "author": "Platzi",
   "license": "MIT",
@@ -27,6 +27,7 @@
     "body-parser": "^1.18.3",
     "chalk": "^2.4.1",
     "cors": "^2.8.5",
+    "cross-env": "^5.2.0",
     "es6-promise": "^4.2.5",
     "express": "^4.16.3",
     "express-jwt": "^5.3.1",
