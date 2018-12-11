@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const errorHandler = require('./_helpers/error-handler')
 const fatalErrorHandler = require('./_helpers/fatalerror-handler')
-const config = require('../config.json')
+const config = require('./secret.json')
 const jwt = require('express-jwt')
 
 const app = express()
