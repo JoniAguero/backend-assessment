@@ -53,8 +53,9 @@
   "nyc": {
     "exclude": [
       "server/app.js",
-      "server/helpers/**/*.js",
-      "server/config",
+      "server/_helpers/**/*.js",
+      "server/routes/special/*.js",
+      "server/config/**/*.js",
       "public",
       "__tests__",
       "node_modules"
